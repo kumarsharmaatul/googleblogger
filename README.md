@@ -7,7 +7,7 @@ A fully autonomous Python-based SEO blogging agent that researches topics, write
 - **Autonomous SEO Research:** Analyzes search intent, ranking keywords, and FAQs.
 - **High-Quality Long-Form Content:** Generates 2500+ word articles formatted in clean HTML.
 - **Automatic Feature Image Generation:** Automatically creates an AI-generated thumbnail image via `pollinations.ai`.
-- **Dynamic Blog Selection:** Enter your Blogger URL directly in the dashboard.
+- **Dynamic Blog Selection:** Enter your Blogger URL directly in the dashboard (auto-fills from `.env` if set).
 - **Zero-Touch Publishing:** Authenticates with Google Blogger API and publishes directly.
 
 ## Prerequisites
