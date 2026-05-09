@@ -14,7 +14,12 @@ A fully autonomous Python-based SEO blogging agent that researches topics, write
 ## Prerequisites
 1. Python 3.10+
 2. A **Google Gemini API Key** (from Google AI Studio).
-3. A **Blogger API `credentials.json`** file configured as a "Desktop App" (or a "Web App" with `http://localhost:8080/` authorized redirect URI).
+3. A **Blogger API `credentials.json`** file:
+   - Configured as a **"Desktop App"** (e.g., `http://localhost:8080/`).
+   - Or a **"Web App"** with `http://localhost:8080/` added to "Authorized redirect URIs".
+
+> [!NOTE]
+> This project uses two ports: **8501** for the Streamlit Web UI and **8080** for the Google OAuth login redirect.
 
 ## Installation & Usage
 
