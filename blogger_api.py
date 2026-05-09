@@ -38,7 +38,7 @@ def get_blogger_service():
     service = build('blogger', 'v3', credentials=creds)
     return service
 
-def get_blog_id(service, url="https://atul-lab.blogspot.com/"):
+def get_blog_id(service, url: str):
     """Fetches the Blog ID given the Blog URL."""
     try:
         response = service.blogs().getByUrl(url=url).execute()
@@ -46,12 +46,12 @@ def get_blog_id(service, url="https://atul-lab.blogspot.com/"):
     except Exception as e:
         raise Exception(f"Could not find blog ID for {url}. Error: {str(e)}")
 
-def publish_post(title: str, content_html: str, labels: list, is_draft: bool = False):
+def publish_post(title: str, content_html: str, labels: list, blog_url: str, is_draft: bool = False):
     """
     Publishes a post to Blogger.
     """
     service = get_blogger_service()
-    blog_id = get_blog_id(service)
+    blog_id = get_blog_id(service, url=blog_url)
     
     body = {
         "title": title,

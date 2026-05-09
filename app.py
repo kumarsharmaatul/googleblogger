@@ -1,5 +1,6 @@
 import streamlit as st
 import json
+import os
 from llm_engine import generate_blog_post, parse_llm_output
 from blogger_api import publish_post
 
@@ -14,23 +15,29 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 st.title("🤖 Autonomous SEO Blogging Agent")
-st.markdown("Enter a topic below, and I will research, write, and publish an SEO-optimized blog post directly to `atul-lab.blogspot.com`.")
+st.markdown("Enter a topic below, and I will research, write, and publish an SEO-optimized blog post directly to your Blogger site.")
 
-topic = st.text_input("Enter your Blog Topic:", placeholder="e.g., The Future of Agentic AI in 2026")
+col_url, col_topic = st.columns([1, 2])
+with col_url:
+    blog_url = st.text_input("Blogger URL:", value=os.getenv("BLOG_URL", ""), placeholder="https://your-blog.blogspot.com/")
+with col_topic:
+    topic = st.text_input("Enter your Blog Topic:", placeholder="e.g., The Future of Agentic AI in 2026")
 
 col1, col2 = st.columns([1, 4])
 with col1:
     is_draft = st.checkbox("Save as Draft (Do not publish live)", value=True)
 
 if st.button("Generate & Publish", type="primary"):
-    if not topic.strip():
+    if not blog_url.strip():
+        st.error("Please enter your Blogger URL.")
+    elif not topic.strip():
         st.error("Please enter a valid topic.")
     else:
         with st.status("Initializing Autonomous Agent...") as status:
             try:
                 # Step 1: Generate Content
                 status.update(label="Step 1: Researching and Generating SEO Content (This takes 1-2 minutes)...", state="running")
-                raw_output = generate_blog_post(topic)
+                raw_output = generate_blog_post(topic, blog_url=blog_url.strip())
                 st.session_state['raw_output'] = raw_output
                 
                 # Step 2: Parse Output
@@ -59,7 +66,7 @@ if st.button("Generate & Publish", type="primary"):
                 
                 # Step 3: Publish to Blogger
                 status.update(label="Step 3: Publishing to Blogger API...", state="running")
-                response = publish_post(title=title, content_html=content_html.strip(), labels=labels, is_draft=is_draft)
+                response = publish_post(title=title, content_html=content_html.strip(), labels=labels, blog_url=blog_url.strip(), is_draft=is_draft)
                 
                 status.update(label="Complete!", state="complete")
                 

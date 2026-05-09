@@ -19,14 +19,18 @@ def load_system_prompt():
             return f.read()
     return "You are an SEO Blogging Agent."
 
-def generate_blog_post(topic: str) -> str:
+def generate_blog_post(topic: str, blog_url: str) -> str:
     """
     Generates the entire SEO blog post output using Google Gemini.
     """
     if not client:
         raise ValueError("GEMINI_API_KEY is not set in the .env file. Please add it.")
 
+    if not blog_url:
+        raise ValueError("BLOG_URL is not set. Please provide your Blogger URL.")
+
     system_prompt = load_system_prompt()
+    system_prompt = system_prompt.replace("{BLOG_URL}", blog_url)
     
     prompt = f"The topic is: {topic}\n\nExecute the complete autonomous SEO blogging pipeline."
     
