@@ -6,35 +6,40 @@ A fully autonomous Python-based SEO blogging agent that researches topics, write
 - **Streamlit Web UI:** Easy to use dashboard to enter blog topics and monitor progress.
 - **Autonomous SEO Research:** Analyzes search intent, ranking keywords, and FAQs.
 - **High-Quality Long-Form Content:** Generates 2500+ word articles formatted in clean HTML.
-- **Automatic Feature Image Generation:** Automatically creates an AI-generated thumbnail image via `pollinations.ai` and injects it into the post.
-- **Dynamic Blog Selection:** Enter any Blogger URL in the UI (or set it via `.env`) to publish to different blogs.
-- **Zero-Touch Publishing:** Authenticates with Google Blogger API and publishes directly (or saves as draft).
-- **Environment Management:** Automatically creates and manages Python virtual environments and dependencies.
+- **Automatic Feature Image Generation:** Automatically creates an AI-generated thumbnail image via `pollinations.ai`.
+- **Dynamic Blog Selection:** Enter your Blogger URL directly in the dashboard.
+- **Zero-Touch Publishing:** Authenticates with Google Blogger API and publishes directly.
 
 ## Prerequisites
 1. Python 3.10+
 2. A **Google Gemini API Key** (from Google AI Studio).
-3. A **Blogger API `credentials.json`** file:
-   - Configured as a **"Desktop App"** (e.g., `http://localhost:8080/`).
-   - Or a **"Web App"** with `http://localhost:8080/` added to "Authorized redirect URIs".
-
-> [!NOTE]
-> This project uses two ports: **8501** for the Streamlit Web UI and **8080** for the Google OAuth login redirect.
+3. A **Blogger API `credentials.json`** file.
 
 ## Installation & Usage
 
-1. **Clone the repository:**
+1. **Clone & Setup:**
    ```bash
    git clone https://github.com/kumarsharmaatul/googleblogger.git
    cd googleblogger
    ```
 
-2. **Setup your environment variables:**
-   Create a `.env` file in the root directory (you can copy `.env.example` if available) and add your keys:
+2. **Configure Keys:**
+   Create a `.env` file and add your keys:
    ```env
    GEMINI_API_KEY=your_gemini_api_key_here
    BLOG_URL=https://your-blog.blogspot.com/
    ```
+
+3. **Run the Bot:**
+   ```bash
+   python3 run.py
+   ```
+
+4. **Access the Dashboard:**
+   Open **`http://localhost:8501`** in your browser. Enter your topic and click **Generate & Publish**.
+
+> [!TIP]
+> The bot uses port **8501** for the dashboard. (Port 8080 is used internally only for the one-time Google Login authorization).
 
 3. **Add Google Credentials:**
    Place your `credentials.json` file in the root directory.
