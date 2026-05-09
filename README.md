@@ -7,6 +7,7 @@ A fully autonomous Python-based SEO blogging agent that researches topics, write
 - **Autonomous SEO Research:** Analyzes search intent, ranking keywords, and FAQs.
 - **High-Quality Long-Form Content:** Generates 2500+ word articles formatted in clean HTML.
 - **Automatic Feature Image Generation:** Automatically creates an AI-generated thumbnail image via `pollinations.ai` and injects it into the post.
+- **Dynamic Blog Selection:** Enter any Blogger URL in the UI (or set it via `.env`) to publish to different blogs.
 - **Zero-Touch Publishing:** Authenticates with Google Blogger API and publishes directly (or saves as draft).
 - **Environment Management:** Automatically creates and manages Python virtual environments and dependencies.
 
@@ -24,9 +25,10 @@ A fully autonomous Python-based SEO blogging agent that researches topics, write
    ```
 
 2. **Setup your environment variables:**
-   Create a `.env` file in the root directory (you can copy `.env.example` if available) and add your Gemini API key:
+   Create a `.env` file in the root directory (you can copy `.env.example` if available) and add your keys:
    ```env
    GEMINI_API_KEY=your_gemini_api_key_here
+   BLOG_URL=https://your-blog.blogspot.com/
    ```
 
 3. **Add Google Credentials:**
