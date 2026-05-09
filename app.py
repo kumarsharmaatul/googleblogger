@@ -50,7 +50,10 @@ if st.button("Generate & Publish", type="primary"):
                     blogger_json_str = blogger_json_str[7:]
                 if blogger_json_str.endswith("```"):
                     blogger_json_str = blogger_json_str[:-3]
-                    
+                
+                import re
+                # Remove control characters that break JSON parsing
+                blogger_json_str = re.sub(r'[\x00-\x1F\x7F]', '', blogger_json_str)
                 blogger_data = json.loads(blogger_json_str.strip())
                 
                 # Default to fallback values if JSON parsing misses something

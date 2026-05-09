@@ -24,14 +24,17 @@ def get_blogger_service():
             try:
                 creds.refresh(Request())
             except Exception:
-                os.remove('token.json')
+                # If refresh fails, delete token and start over
+                if os.path.exists('token.json'):
+                    os.remove('token.json')
                 return get_blogger_service()
         else:
             if not os.path.exists('credentials.json'):
                 raise FileNotFoundError("credentials.json not found. Please download it from Google Cloud Console.")
             flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
             creds = flow.run_local_server(port=8080)
-        # Save the credentials for the next run
+        
+        # Save the credentials for the next run (new login or refreshed)
         with open('token.json', 'w') as token:
             token.write(creds.to_json())
 
