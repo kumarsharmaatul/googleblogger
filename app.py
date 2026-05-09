@@ -1,8 +1,12 @@
 import streamlit as st
 import json
 import os
+from dotenv import load_dotenv
 from llm_engine import generate_blog_post, parse_llm_output
 from blogger_api import publish_post
+
+# Load environment variables
+load_dotenv()
 
 st.set_page_config(page_title="Autonomous SEO Blogger", page_icon="🤖", layout="wide")
 
