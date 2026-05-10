@@ -108,11 +108,10 @@ Generate:
 6. Suggested Tags
 7. Featured Snippet Answer
 8. Introduction Hook
-9. Table of Contents
-10. H2/H3 Sections
-11. FAQs
-12. Conclusion
-13. CTA
+9. H2/H3 Sections
+10. FAQs
+11. Conclusion
+12. CTA
 
 ════════════════════════════════════
 CONTENT LENGTH
